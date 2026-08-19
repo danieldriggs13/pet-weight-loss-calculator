@@ -1,6 +1,13 @@
 def get_species():
-    #TODO: Return the selected species (dog or cat)
-    pass
+    while True:
+        species = input('Type "d" for dog, "c" for cat: ').lower()
+
+        if species in ("d", "c"):
+            species_name = "dog" if species == "d" else "cat"
+            print(f"You selected {species_name}")
+            return species
+
+        print("Invalid input, please try again.\n")
 
 def get_weight():
     #TODO: Return the current weight (in lbs)
