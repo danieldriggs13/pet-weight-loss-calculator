@@ -1,3 +1,5 @@
+DIVISOR_PER_BCS = {1: 0.7, 2: 0.8, 3: 0.9, 4: 1.0, 5: 1.0, 6: 1.1, 7: 1.2, 8: 1.3, 9: 1.4}
+
 def get_species():
     """Get and return the pet's species via console input. Returns a string - "dog" or "cat"."""
     while True:
@@ -41,9 +43,9 @@ def get_bcs():
             print("That is not a valid number! Please try again.")
 
 
-def calculate_ideal_weight(species, current_weight, bcs):
-    #TODO: Calculate ideal weight based on species, current weight, and BCS
-    pass
+def calculate_ideal_weight(current_weight, bcs):
+    """Calculates pet's ideal weight based on current weight and BCS. Returns a float rounded to 1 decimal place."""
+    return round(current_weight / DIVISOR_PER_BCS[bcs], 1)
 
 
 def calculate_daily_calories(ideal_weight, species):
