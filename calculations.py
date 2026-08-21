@@ -1,4 +1,6 @@
 DIVISOR_PER_BCS = {1: 0.7, 2: 0.8, 3: 0.9, 4: 1.0, 5: 1.0, 6: 1.1, 7: 1.2, 8: 1.3, 9: 1.4}
+DOG_KCAL_MATH = {"rer_pow": 0.75, "max_kcal_multiplier": 1.6}
+CAT_KCAL_MATH = {"rer_pow": 0.67, "max_kcal_multiplier": 1.2}
 
 def get_species():
     """Get and return the pet's species via console input. Returns a string - "dog" or "cat"."""
@@ -48,6 +50,18 @@ def calculate_ideal_weight(current_weight, bcs):
     return round(current_weight / DIVISOR_PER_BCS[bcs], 1)
 
 
-def calculate_daily_calories(ideal_weight, species):
-    #TODO: Calculate recommended daily calorie range for the ideal weight
-    pass
+def calculate_daily_calories(current_weight, ideal_weight, species):
+    """Calculates recommended daily calorie range for the pet's ideal weight"""
+    current_weight_kg = current_weight / 2.2
+    ideal_weight_kg = ideal_weight / 2.2
+
+    kcal_math = DOG_KCAL_MATH if species == "dog" else CAT_KCAL_MATH
+
+    rer_kcal_current = 70 * current_weight_kg ** kcal_math["rer_pow"]
+    rer_kcal_ideal = 70 * ideal_weight_kg ** kcal_math["rer_pow"]
+    min_kcal_weight_loss = rer_kcal_current * 0.8
+
+    min_calories = (rer_kcal_current + rer_kcal_ideal + min_kcal_weight_loss) / 3
+    max_calories = rer_kcal_ideal * kcal_math["max_kcal_multiplier"]
+
+    return round(min_calories), round(max_calories)
