@@ -13,8 +13,8 @@ def main():
     ideal_weight = calculations.calculate_ideal_weight(weight, bcs)
     print(f'Ideal weight: {ideal_weight} lbs') # test
 
-    basic_calories, min_calories, max_calories = calculations.calculate_daily_calories(weight, ideal_weight, species)
-    print(f'Recommended kcal/day for goal weight: {basic_calories} ({min_calories}-{max_calories})')   # test
+    rec_kcal = calculations.calculate_daily_calories(ideal_weight, species)
+    print(f'Recommended kcal/day for goal weight: {rec_kcal} ')   # test
 
 if __name__ == "__main__":
     main()
