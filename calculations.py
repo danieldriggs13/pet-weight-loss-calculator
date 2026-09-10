@@ -77,7 +77,7 @@ def calculate_daily_calories(current_weight, ideal_weight, species):
     max_calories = rer_kcal_ideal * kcal_math["max_kcal_multiplier"]
 
     #TODO: Finalize and implement ROUNDING_FACTOR on return values
-    return round(min_calories), round(max_calories)
+    return round(rer_kcal_ideal), round(min_calories), round(max_calories)
 
 """
 
@@ -88,29 +88,32 @@ BCS: 7
 
 Hand-calculated results:
 Ideal weight: 85.7
-Recommended kcal/day for goal weight: 1,100 - 1,500
+Recommended kcal/day for goal weight (MLM's formula): 1,100 - 1,500
+Recommended kcal/day for goal weight (NB's formula): 1091
 
 How I got these results:
-    Minimum: RER of ideal weight: 1,091 (rounded up to 1,100 for min kcal/day)
-    Maximum: 
-        Senior kcal of ideal weight: 1,528 (calc: RER * 1.4, rounded down to 1,500 for max kcal/day)
-            and
-        Obese prone kcal of current weight: 1,501 (calc: RER * 1.2, rounded down to 1,500 for max kcal/day)
+    MLM:
+        Minimum: RER of ideal weight: 1,091 (rounded up to 1,100 for min kcal/day)
+        Maximum: 
+            Senior kcal of ideal weight: 1,528 (calc: RER * 1.4, rounded down to 1,500 for max kcal/day)
+                and
+            Obese prone kcal of current weight: 1,501 (calc: RER * 1.2, rounded down to 1,500 for max kcal/day)
+    NB:
+        RER of ideal weight
 
 Current program results:
 Ideal weight: 85.7 lbs
 Recommended kcal/day for goal weight: 1114-1528 (close to hand-calculated, but will it work across all species and weights?)
 
-
 Thoughts:
-Too big of a range for min and max kcal/day. Max kcal/day also seems high for a weight loss plan. 
+MLM too big of a range for min and max kcal/day. Max kcal/day also seems high for a weight loss plan. 
 I will need to adjust the calculations to make the range smaller and more appropriate for weight loss.
 
 Ideally the results should also be rounded to nearest appropriate number for owner ease of use while maintaining acceptable accuracy.
 Cat ranges for example can be rounded (by 10s) much less than a large dog range (by 100s).
 
-Per Dr. B, she doesn't even give owners a range, she calculates the RER of ideal weight and that is the kcal/day she recommends for the pet. If this amount is not working,
-can decrease by 10% and if still not working they need to switch to a weight loss diet, as decreaseing further on normal food can lead to nutritional deficiencies.
+Per NB, she doesn't even give owners a range, she calculates the RER of ideal weight and that is the kcal/day she recommends for the pet. If this amount is not working,
+can decrease by 10% and if still not working they need to switch to a weight loss diet, as decreasing further on normal food can lead to nutritional deficiencies.
 
 Other measurements to consider:
 
